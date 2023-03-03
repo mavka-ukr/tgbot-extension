@@ -1,0 +1,23 @@
+{
+  "name": "tgbot-extension",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Розширення Мавки для роботи з телеграм-ботами.",
+  "main": "tgbot.m.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mavka-ukr/tgbot-extension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mavka-ukr/tgbot-extension/issues"
+  },
+  "homepage": "https://github.com/mavka-ukr/tgbot-extension#readme",
+  "devDependencies": {
+    "prettier": "2.8.4"
+  }
+}
