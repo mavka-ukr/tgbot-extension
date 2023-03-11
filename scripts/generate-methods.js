@@ -15,10 +15,20 @@ const makeTelegramTypeStructureProperties = (item) => {
 `);
 };
 
-const makeStructureToProperty = (field) => `  ${field.name}=я.${mapPropertyName(field.name)}`;
+const makeStructureToProperty = (field) => {
+  let pName = mapPropertyName(field.name);
+
+  if (!(field.types[0] in nativeTypes)) {
+    pName = `pName ? ${pName}.перетворити_на_телеграм_об'єкт() : пусто`;
+  }
+
+  return `  ${field.name}=я.${pName}`;
+};
 
 const makeStructureToProperties = (item) => item.fields.map((f) => `  ${makeStructureToProperty(f)}`).join(`,
 `);
+
+const gives = [];
 
 const mapTelegramMethod = (item) => {
   if (!item.fields) {
@@ -28,10 +38,16 @@ const mapTelegramMethod = (item) => {
   const toPropsText = makeStructureToProperties(item);
   const structureProps = makeTelegramTypeStructureProperties(item);
 
+  const structureName = makeTelegramTypeStructureName(item);
+
+  gives.push(structureName);
+
   return `
-структура ${makeTelegramTypeStructureName(item)}${structureProps ? `
+структура ${structureName}${structureProps ? `
 ${structureProps}` : ""}
 кінець
+
+${structureName}._назва_методу_ = "${item.name}"
 
 дія ${makeTelegramTypeStructureName(item)}.перетворити_на_телеграм_об'єкт()
   Об'єкт(${toPropsText ? `
@@ -50,4 +66,7 @@ const result = Object.values(botApiSchema.methods)
 
 `);
 
-console.log(result);
+const givesText = gives.map((v) => `дати ${v}`).join(`
+`);
+
+console.log(result + "\n\n" + givesText);

@@ -27,6 +27,8 @@ const makeStructureFromProperties = (item) => item.fields.map((f) => `  ${makeSt
 const makeStructureToProperties = (item) => item.fields.map((f) => `  ${makeStructureToProperty(f)}`).join(`,
 `);
 
+const gives = [];
+
 const mapTelegramType = (item) => {
   if (!item.fields) {
     item.fields = [];
@@ -36,8 +38,12 @@ const mapTelegramType = (item) => {
   const toPropsText = makeStructureToProperties(item);
   const structureProps = makeTelegramTypeStructureProperties(item);
 
+  const structureName = makeTelegramTypeStructureName(item);
+
+  gives.push(structureName);
+
   return `
-структура ${makeTelegramTypeStructureName(item)}${structureProps ? `
+структура ${structureName}${structureProps ? `
 ${structureProps}` : ""}
 кінець
 
@@ -62,4 +68,7 @@ const result = Object.values(botApiSchema.types)
 
 `);
 
-console.log(result);
+const givesText = gives.map((v) => `дати ${v}`).join(`
+`);
+
+console.log(result + "\n\n" + givesText);
