@@ -122,4 +122,11 @@ a {
   }
 }
 
+blockquote {
+  border-left: 0.5rem solid black;
+  margin: 1.5em 0;
+  padding: 0.5em 1rem;
+  quotes: none;
+}
+
 @import "buttons";
