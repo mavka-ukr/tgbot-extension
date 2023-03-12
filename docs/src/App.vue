@@ -59,12 +59,6 @@ $sidebarWidth: 20rem;
   height: 100%;
 }
 
-.page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
 .docs-sidebar {
   position: fixed;
 
