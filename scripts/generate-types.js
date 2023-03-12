@@ -47,6 +47,8 @@ const mapTelegramType = (item) => {
 ${structureProps}` : ""}
 кінець
 
+${structureName}.назва_типу = "${item.name}"
+
 ${makeTelegramTypeStructureName(item)}.створити_з_телеграм_об'єкта = (то): то ? ${makeTelegramTypeStructureName(item)}(${fromPropsText ? `
 ${fromPropsText}
 ` : ""}) : пусто

@@ -1,0 +1,125 @@
+@import "highlight.js/styles/atom-one-dark.css";
+
+html {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --hint-color: #444444;
+
+  @media (prefers-color-scheme: dark) {
+    --bg-color: #111111;
+    --text-color: #ffffff;
+    --hint-color: #999999;
+  }
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+
+  font-family: 'Rubik', sans-serif;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 1rem;
+
+  overflow-x: hidden;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 1024px;
+}
+
+.diia-word {
+  color: #485cb0;
+  font-weight: 500;
+}
+
+.nav-toggle {
+  position: fixed;
+  z-index: 1001;
+
+  top: 1rem;
+  left: 1rem;
+
+  width: 54px;
+  height: 54px;
+
+  font-size: 1.5rem;
+  background-color: rgba(var(--bg-color_rgb), .1);
+  border: none;
+  border-radius: 2px;
+
+  background-image: radial-gradient(transparent 1px, var(--bg-color) 1px);
+  background-size: 4px 4px;
+  backdrop-filter: saturate(50%) blur(4px);
+
+  color: var(--text-color);
+
+  @media screen and (min-width: 956px) {
+    display: none;
+  }
+}
+
+.link {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.external {
+  font-weight: 500;
+}
+
+.hljs {
+  background-color: black !important;
+}
+
+//.hljs-title.function_ {
+//  color: lighten(#9d3425, 20) !important;
+//}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.star {
+  font-size: 8px;
+}
+
+.logo-dark,
+.logo-light {
+  display: none;
+}
+
+.cs-light {
+  .logo-dark {
+    display: none;
+  }
+
+  .logo-light {
+    display: inline;
+  }
+}
+
+.cs-dark {
+  .logo-light {
+    display: none;
+  }
+
+  .logo-dark {
+    display: inline;
+  }
+}
+
+@import "buttons";

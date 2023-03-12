@@ -15,26 +15,26 @@ const makeTelegramTypeStructureProperties = (item) => {
 `);
 };
 
-const makeStructureToProperty = (field) => {
-  let pName = mapPropertyName(field.name);
+const makeStructureFromProperty = (field) => `
+${mapPropertyName(field.name)}=${field.types[0] in nativeTypes || field.types[0].startsWith("Array of") ? `то.${field.name}` : mapStructureName(field.types[0]) + `.створити_з_телеграм_об'єкта(то.${field.name})`}
+`.trim();
 
-  if (!(field.types[0] in nativeTypes)) {
-    pName = `pName ? ${pName}.перетворити_на_телеграм_об'єкт() : пусто`;
-  }
+const makeStructureToProperty = (field) => `  ${field.name}=я.${mapPropertyName(field.name)}`;
 
-  return `  ${field.name}=я.${pName}`;
-};
+const makeStructureFromProperties = (item) => item.fields.map((f) => `  ${makeStructureFromProperty(f)}`).join(`,
+`);
 
 const makeStructureToProperties = (item) => item.fields.map((f) => `  ${makeStructureToProperty(f)}`).join(`,
 `);
 
 const gives = [];
 
-const mapTelegramMethod = (item) => {
+const mapTelegramTypeForDocs = (item) => {
   if (!item.fields) {
     item.fields = [];
   }
 
+  const fromPropsText = makeStructureFromProperties(item);
   const toPropsText = makeStructureToProperties(item);
   const structureProps = makeTelegramTypeStructureProperties(item);
 
@@ -43,30 +43,24 @@ const mapTelegramMethod = (item) => {
   gives.push(structureName);
 
   return `
-структура ${structureName}${structureProps ? `
+  <div class="code-window code-window-full">
+    <highlightjs
+      language="diia"
+      :autodetect="false"
+      :code="\`структура ${structureName}${structureProps ? `
 ${structureProps}` : ""}
 кінець
 
-${structureName}.назва_методу = "${item.name}"
-
-дія ${makeTelegramTypeStructureName(item)}.перетворити_на_телеграм_об'єкт()
-  Об'єкт(${toPropsText ? `
-${toPropsText},
-    __оминати_пустоту_конвертуючи__=так
-  ` : ""})
-кінець
+${structureName}.назва_типу = &quot;${item.name}&quot;\`"
+    />
+  </div>
 `.trim();
 };
 
-const result = Object.values(botApiSchema.methods)
-  .map(mapTelegramMethod)
+const result = Object.values(botApiSchema.types)
+  .map(mapTelegramTypeForDocs)
   .join(`
-
-;; ---
-
+<br>
 `);
 
-const givesText = gives.map((v) => `дати ${v}`).join(`
-`);
-
-console.log(result + "\n\n" + givesText);
+console.log(result);

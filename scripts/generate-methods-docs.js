@@ -30,7 +30,7 @@ const makeStructureToProperties = (item) => item.fields.map((f) => `  ${makeStru
 
 const gives = [];
 
-const mapTelegramMethod = (item) => {
+const mapTelegramMethodForDocs = (item) => {
   if (!item.fields) {
     item.fields = [];
   }
@@ -43,30 +43,25 @@ const mapTelegramMethod = (item) => {
   gives.push(structureName);
 
   return `
-структура ${structureName}${structureProps ? `
+<div class="code-window code-window-full">
+    <highlightjs
+      language="diia"
+      :autodetect="false"
+      :code="\`структура ${structureName}${structureProps ? `
 ${structureProps}` : ""}
 кінець
 
-${structureName}.назва_методу = "${item.name}"
-
-дія ${makeTelegramTypeStructureName(item)}.перетворити_на_телеграм_об'єкт()
-  Об'єкт(${toPropsText ? `
-${toPropsText},
-    __оминати_пустоту_конвертуючи__=так
-  ` : ""})
-кінець
+${structureName}.назва_методу = &quot;${item.name}&quot;
+\`"
+    />
+  </div>
 `.trim();
 };
 
 const result = Object.values(botApiSchema.methods)
-  .map(mapTelegramMethod)
+  .map(mapTelegramMethodForDocs)
   .join(`
-
-;; ---
-
+<br>
 `);
 
-const givesText = gives.map((v) => `дати ${v}`).join(`
-`);
-
-console.log(result + "\n\n" + givesText);
+console.log(result);

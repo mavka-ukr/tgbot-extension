@@ -1,0 +1,51 @@
+button,
+.button {
+  position: relative;
+
+  cursor: pointer;
+
+  &:disabled {
+    opacity: .5;
+  }
+
+  transition: all 250ms ease-in-out;
+}
+
+button:after,
+.button:after {
+  position: absolute;
+
+  content: ' ';
+
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  background: transparent;
+  border-radius: inherit;
+
+  transition: background 250ms ease-in-out;
+}
+
+button:hover,
+.button:hover {
+  &:after {
+    background: rgba(var(--text-color_rgb), .1);
+  }
+}
+
+button:active,
+.button:active {
+  &:after {
+    background: rgba(var(--bg-color_rgb), .1);
+  }
+}
+
+.button:hover {
+  box-shadow: 0 0 0 3px rgba(var(--text-color_rgb), .5);
+
+  &.button-large {
+    box-shadow: 0 0 0 4px rgba(var(--text-color_rgb), .5);
+  }
+}
