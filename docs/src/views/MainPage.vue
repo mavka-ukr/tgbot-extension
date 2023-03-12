@@ -43,7 +43,7 @@ const realExample = `
     чекати відповідь = отримати_джсон("https://russianwarship.rip/api/v2/statistics/latest")
 
     статистика = "
-вбитих_солдат = %(відповідь.data.stats.personnel_units)
+вбитих солдат = %(відповідь.data.stats.personnel_units)
 танків = %(відповідь.data.stats.tanks)
 бронетехніки = %(відповідь.data.stats.armoured_fighting_vehicles)
 артилерії = %(відповідь.data.stats.artillery_systems)
