@@ -16,7 +16,7 @@ const makeTelegramTypeStructureProperties = (item) => {
 };
 
 const makeStructureFromProperty = (field) => `
-${mapPropertyName(field.name)}=${field.types[0] in nativeTypes || field.types[0].startsWith("Array of") ? `то.${field.name}` : mapStructureName(field.types[0]) + `.створити_з_телеграм_об'єкта(то.${field.name})`}
+${mapPropertyName(field.name)}=${field.types[0] in nativeTypes || field.types[0].startsWith("Array of") ? `то.${field.name}` : mapStructureName(field.types[0]) + `.створити_з_телеграм_обʼєкта(то.${field.name})`}
 `.trim();
 
 const makeStructureToProperty = (field) => `  ${field.name}=я.${mapPropertyName(field.name)}`;

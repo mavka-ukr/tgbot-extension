@@ -1,10 +1,6 @@
 <script setup>
 const installNetCode = `
-підключити_розширення_з_мережі("https://raw.githubusercontent.com/mavka-ukr/tgbot-extension/main/tgbot.m.js")
-`.trim();
-
-const installLocCode = `
-підключити_розширення_з_файлу("tgbot.m.js")
+взяти "хмарний.пак.укр/телеграм_бот/0.0.1"
 `.trim();
 
 const givesCode = `
@@ -20,7 +16,7 @@ const givesCode = `
 `.trim();
 
 const basicExample = `
-підключити_розширення_з_мережі("https://raw.githubusercontent.com/mavka-ukr/tgbot-extension/main/tgbot.m.js")
+взяти "хмарний.пак.укр/телеграм_бот/0.0.1"
 
 бот = ТелеграмБот.Бот(токен="-_-")
 
@@ -32,7 +28,7 @@ const basicExample = `
 `.trim();
 
 const realExample = `
-підключити_розширення_з_мережі("https://raw.githubusercontent.com/mavka-ukr/tgbot-extension/main/tgbot.m.js")
+взяти "хмарний.пак.укр/телеграм_бот/0.0.1"
 
 бот = ТелеграмБот.Бот(токен="-_-")
 
@@ -74,19 +70,19 @@ const realExample = `
   </p>
 
   <p>
-    Код самого розширення знаходиться тут:
+    Код самого паку знаходиться тут:
     <a target="_blank" class="link external"
        href="https://github.com/mavka-ukr/tgbot-extension">github.com/mavka-ukr/tgbot-extension</a>
   </p>
 
   <p>
-    Детальніше про розширення Мавки можна почитати тут:
+    Детальніше про паки Мавки можна почитати тут:
     <a target="_blank" class="link external"
-       href="https://мавка.укр/docs/extensions">мавка.укр/docs/extensions</a>
+       href="https://мавка.укр/docs/cloud-paks">мавка.укр/docs/cloud-paks</a>
   </p>
 
   <p>
-    Щоб підключити розширення Мавки для роботи з телеграм-ботами необхідно на початку файлу викликати відповідну дію:
+    Щоб підключити пак Мавки для роботи з телеграм-ботами необхідно виконати наступну команду:
   </p>
   <div class="code-window code-window-full">
     <highlightjs
@@ -96,17 +92,7 @@ const realExample = `
     />
   </div>
   <p>
-    або
-  </p>
-  <div class="code-window code-window-full">
-    <highlightjs
-      language="diia"
-      :autodetect="false"
-      :code="installLocCode"
-    />
-  </div>
-  <p>
-    Розширення додає в контекст модуль <code>ТелеграмБот</code> який містить необхідні структури, дії та модулі для
+    Пак додає в контекст модуль <code>ТелеграмБот</code> який містить необхідні структури, дії та модулі для
     роботи з телеграм-ботами.
   </p>
   <p>
@@ -149,6 +135,6 @@ const realExample = `
   <br>
   <blockquote>
     УВАГА: структури типів та методів перекладав ChatGPT і, так як їх надто багато, мною вони не перевірялись. Якщо ви
-    бачите помилку або покращення - зробіть issue або PR в репозиторій розширення на Гітхабі.
+    бачите помилку або покращення - зробіть issue або PR в репозиторій паку на Гітхабі.
   </blockquote>
 </template>

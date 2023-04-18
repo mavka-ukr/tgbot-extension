@@ -7,7 +7,7 @@ const mapPropertyName = (name) => name in propertyNamesMap ? propertyNamesMap[na
 const makeTelegramTypeStructureName = (item) => `${mapStructureName(item.name)}`;
 
 const makeStructureProperty = (field) => `
-${mapPropertyName(field.name)} ${field.types[0] in nativeTypes ? nativeTypes[field.types[0]] : mapStructureName(field.types[0])}
+${mapPropertyName(field.name)} ${field.types[0] in nativeTypes ? nativeTypes[field.types[0]] : mapStructureName(field.types[0])} = undefined
 `.trim();
 
 const makeTelegramTypeStructureProperties = (item) => {
@@ -19,7 +19,7 @@ const makeStructureToProperty = (field) => {
   let pName = mapPropertyName(field.name);
 
   if (!(field.types[0] in nativeTypes)) {
-    pName = `pName ? ${pName}.перетворити_на_телеграм_об'єкт() : пусто`;
+    pName = `${pName} ? ${pName}.перетворити_на_телеграм_обʼєкт() : я.${pName}`;
   }
 
   return `  ${field.name}=я.${pName}`;
@@ -49,10 +49,9 @@ ${structureProps}` : ""}
 
 ${structureName}.назва_методу = "${item.name}"
 
-дія ${makeTelegramTypeStructureName(item)}.перетворити_на_телеграм_об'єкт()
-  Об'єкт(${toPropsText ? `
-${toPropsText},
-    __оминати_пустоту_конвертуючи__=так
+дія ${makeTelegramTypeStructureName(item)}.перетворити_на_телеграм_обʼєкт()
+  (${toPropsText ? `
+${toPropsText}
   ` : ""})
 кінець
 `.trim();

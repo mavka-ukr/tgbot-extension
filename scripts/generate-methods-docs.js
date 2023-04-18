@@ -19,7 +19,7 @@ const makeStructureToProperty = (field) => {
   let pName = mapPropertyName(field.name);
 
   if (!(field.types[0] in nativeTypes)) {
-    pName = `pName ? ${pName}.перетворити_на_телеграм_об'єкт() : пусто`;
+    pName = `pName ? ${pName}.перетворити_на_телеграм_обʼєкт() : пусто`;
   }
 
   return `  ${field.name}=я.${pName}`;
